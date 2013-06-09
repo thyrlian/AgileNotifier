@@ -8,7 +8,7 @@ module AgileNotifier
     end
 
     def get_all_jobs
-      raise "Abstract method [#{__method__}] is called, please implement"
+      raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
     end
 
     class Job
@@ -22,7 +22,7 @@ module AgileNotifier
       end
 
       def get_last_build
-        raise "Abstract method [#{__method__}] is called, please implement"
+        raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
       end
 
       class Build
@@ -35,7 +35,7 @@ module AgileNotifier
         end
 
         def get_result
-          raise "Abstract method [#{__method__}] is called, please implement"
+          raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
         end
       end
     end
