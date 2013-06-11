@@ -15,6 +15,10 @@ module AgileNotifier
       end
     end
 
+    def is_available?
+
+    end
+
     def get_all_jobs
       jobs = self.class.get_node(@url, 'jobs')
       if jobs.nil?

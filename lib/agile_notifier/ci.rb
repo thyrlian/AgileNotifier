@@ -1,5 +1,9 @@
+require_relative 'service'
+
 module AgileNotifier
   class CI
+    include Service
+
     attr_accessor :jobs
 
     def initialize(url)
