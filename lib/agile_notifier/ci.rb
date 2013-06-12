@@ -3,12 +3,17 @@ require_relative 'service'
 module AgileNotifier
   class CI
     include Service
+    alias_method :original_is_available?, :is_available?
 
     attr_accessor :jobs
 
     def initialize(url)
       @url = url
       @jobs = get_all_jobs
+    end
+
+    def is_available?
+      original_is_available?(@url)
     end
 
     def get_all_jobs
