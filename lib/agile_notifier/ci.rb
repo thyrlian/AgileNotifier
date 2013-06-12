@@ -1,8 +1,8 @@
-require_relative 'service'
+require_relative 'servable'
 
 module AgileNotifier
   class CI
-    include Service
+    include Servable
     alias_method :original_is_available?, :is_available?
 
     attr_accessor :jobs

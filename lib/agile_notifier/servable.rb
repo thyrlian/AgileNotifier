@@ -1,7 +1,7 @@
 require 'net/http'
 
 module AgileNotifier
-  module Service
+  module Servable
     def is_https_request?(url)
       regex = /https:\/\//
       regex.match(url) ? true : false
