@@ -35,15 +35,20 @@ module AgileNotifier
       end
 
       class Build
-        attr_accessor :number, :url, :result #, :time, :revision
+        attr_accessor :number, :url, :result, :revision #, :time
 
         def initialize(number, url)
           @number = number
           @url = url
           @result = get_result
+          @revision = get_revision
         end
 
         def get_result
+          raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
+        end
+
+        def get_revision
           raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
         end
       end

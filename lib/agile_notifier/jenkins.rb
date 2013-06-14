@@ -37,6 +37,11 @@ module AgileNotifier
           result = Jenkins.get_node(@url, 'result')
           result.nil? ? nil : result
         end
+
+        def get_revision
+          scm_info = Jenkins.get_node(@url, 'actions')[2]
+          scm_info.nil? ? nil : revision = scm_info['lastBuiltRevision']['SHA1']
+        end
       end
     end
   end
