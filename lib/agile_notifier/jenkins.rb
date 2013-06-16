@@ -8,12 +8,12 @@ module AgileNotifier
     extend ResponseHelper
     JSON_API = '/api/json'
 
-    def self.get_value(url, key)
-      get_value_of_key(url + JSON_API, key)
+    def self.get_value(key, url)
+      get_value_of_key(key, url + JSON_API)
     end
 
     def get_all_jobs
-      jobs = self.class.get_value(@url, 'jobs')
+      jobs = self.class.get_value('jobs', @url)
       if jobs.nil?
         return nil
       else
@@ -25,18 +25,18 @@ module AgileNotifier
 
     class Job < CI::Job
       def get_last_build
-        last_build = Jenkins.get_value(@url, 'lastBuild')
+        last_build = Jenkins.get_value('lastBuild', @url)
         last_build.nil? ? nil : Build.new(last_build['number'], last_build['url'])
       end
 
       class Build < CI::Job::Build
         def get_result
-          result = Jenkins.get_value(@url, 'result')
+          result = Jenkins.get_value('result', @url)
           result.nil? ? nil : result
         end
 
         def get_revision
-          scm_info = Jenkins.get_value(@url, 'actions')[2]
+          scm_info = Jenkins.get_value('actions', @url)[2]
           scm_info.nil? ? nil : revision = scm_info['lastBuiltRevision']['SHA1']
         end
       end
