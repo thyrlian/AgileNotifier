@@ -35,7 +35,7 @@ module AgileNotifier
       end
 
       class Build
-        attr_accessor :number, :url, :result, :revision #, :time
+        attr_accessor :number, :url, :result, :revision
 
         def initialize(number, url)
           @number = number
