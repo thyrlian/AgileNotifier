@@ -12,6 +12,19 @@ module AgileNotifier
       get_value_of_key(key, url + JSON_API)
     end
 
+    def initialize(url, *names)
+      @url = url
+      if names.empty?
+        @jobs = get_all_jobs
+      else
+        @jobs = []
+        names.each do |name|
+          job_url = "#{@url}/job/#{name}/"
+          @jobs.push(Job.new(name, job_url))
+        end
+      end
+    end
+
     def get_all_jobs
       jobs = self.class.get_value('jobs', @url)
       if jobs.nil?

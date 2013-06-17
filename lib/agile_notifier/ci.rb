@@ -7,9 +7,9 @@ module AgileNotifier
 
     attr_accessor :jobs
 
-    def initialize(url)
+    def initialize(url, *jobs)
       @url = url
-      @jobs = get_all_jobs
+      jobs.empty? ? @jobs = get_all_jobs : @jobs = jobs
     end
 
     def is_available?
