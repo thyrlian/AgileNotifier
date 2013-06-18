@@ -7,10 +7,17 @@ module AgileNotifier
   class Github < SCM
     extend ResponseHelper
 
+    ENTERPRISE_API = '/api/v3'
     USERAGENT = 'AgileNotifier'
 
-    def self.get_value(key, url)
-      get_value_of_key(key, url, :headers => {'User-Agent' => USERAGENT})
+    class << self
+      def new_enterprise_version(url)
+        new(url + ENTERPRISE_API)
+      end
+
+      def get_value(key, url)
+        get_value_of_key(key, url, :headers => {'User-Agent' => USERAGENT})
+      end
     end
 
     def add_repository(args)

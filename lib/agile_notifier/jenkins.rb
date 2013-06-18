@@ -6,6 +6,7 @@ require 'httparty'
 module AgileNotifier
   class Jenkins < CI
     extend ResponseHelper
+
     JSON_API = '/api/json'
 
     def self.get_value(key, url)
@@ -49,7 +50,7 @@ module AgileNotifier
         end
 
         def get_revision
-          scm_info = Jenkins.get_value('actions', @url)[2]
+          scm_info = Jenkins.get_value('actions', @url)[3]
           scm_info.nil? ? nil : revision = scm_info['lastBuiltRevision']['SHA1']
         end
       end
