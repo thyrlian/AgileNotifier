@@ -35,6 +35,10 @@ module AgileNotifier
         raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
       end
 
+      def update_last_build
+        @last_build = get_last_build
+      end
+
       class Build
         include Trackable
 
