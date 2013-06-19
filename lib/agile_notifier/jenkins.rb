@@ -59,7 +59,7 @@ module AgileNotifier
         end
 
         def failed?
-          !passed?
+          @result == 'FAILURE'
         end
       end
     end
