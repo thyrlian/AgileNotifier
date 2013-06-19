@@ -53,6 +53,14 @@ module AgileNotifier
           scm_info = Jenkins.get_value('actions', @url)[3]
           scm_info.nil? ? nil : revision = scm_info['lastBuiltRevision']['SHA1']
         end
+
+        def passed?
+          @result == 'SUCCESS'
+        end
+
+        def failed?
+          !passed?
+        end
       end
     end
   end

@@ -1,4 +1,5 @@
 require_relative 'servable'
+require_relative 'trackable'
 
 module AgileNotifier
   class CI
@@ -35,6 +36,8 @@ module AgileNotifier
       end
 
       class Build
+        include Trackable
+
         attr_accessor :number, :url, :result, :revision
 
         def initialize(number, url)
