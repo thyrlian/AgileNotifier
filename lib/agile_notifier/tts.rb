@@ -15,8 +15,8 @@ module AgileNotifier
         Service.send(service.intern, text)
       end
 
-      def remove_punctuation(text)
-        #TODO
+      def replace_punctuation_by_space(text)
+        text.gsub(/[[:punct:]](\s+)*/, ' ').gsub(/\s$/, '')
       end
 
       def encode_www_form(text)
@@ -24,7 +24,7 @@ module AgileNotifier
       end
 
       def encode_www_form_and_remove_punctuation(text)
-        text.gsub(/(\W\s+)|(\W)|(\s+)/, '+').gsub(/\++$/, '')
+        encode_www_form(replace_punctuation_by_space(text))
       end
     end
 
@@ -40,7 +40,6 @@ module AgileNotifier
         end
 
         def mary_tts(text)
-          #http://mary.dfki.de:59125/process?INPUT_TEXT=Danny+Preu%C3%9Fler&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&LOCALE=de&AUDIO=WAVE_FILE
           url = 'http://mary.dfki.de:59125/'
           text = encode_www_form_and_remove_punctuation(text)
           locale = 'de'
@@ -50,6 +49,6 @@ module AgileNotifier
       end
     end
 
-    private_class_method :new, :call_service, :encode_www_form_and_remove_punctuation
+    private_class_method :new, :call_service, :replace_punctuation_by_space, :encode_www_form, :encode_www_form_and_remove_punctuation
   end
 end
