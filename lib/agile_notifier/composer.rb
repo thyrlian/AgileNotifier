@@ -3,9 +3,9 @@
 module AgileNotifier
   class Composer
     SENTENCES = [
-        "%{committer_name} haben den Build kaputt gemacht",
-        "Ich wird hab %{committer_name} mit dem Nerf abgeschossen",
-        "%{committer_name}, scheiße, scheiße, scheiße, scheiße!!!"
+        "%{committer_name} hat den Build kaputt gemacht.",
+        "Schießt %{committer_name} mit der Nerf Gun ab!",
+        "%{committer_name} hat Scheiße gebaut."
     ]
 
     class << self
