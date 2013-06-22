@@ -1,7 +1,10 @@
 require 'uri'
+require 'open-uri'
 
 module AgileNotifier
   class TTS
+    @@temp_file = File.dirname(__FILE__) + '/temp_tts'
+
     class << self
       def speak(text)
         speak_via('osx_speech', text)
@@ -26,6 +29,19 @@ module AgileNotifier
       def encode_www_form_and_remove_punctuation(text)
         encode_www_form(replace_punctuation_by_space(text))
       end
+
+      def download_file(url, file = @@temp_file)
+        open(url) do |remote_file|
+          data = remote_file.read
+          File.open(file, 'wb') do |local_file|
+            local_file.write(data)
+          end
+        end
+      end
+
+      def remove_file(file = @@temp_file)
+        File.delete(file)
+      end
     end
 
     class Service
@@ -49,6 +65,6 @@ module AgileNotifier
       end
     end
 
-    private_class_method :new, :call_service, :replace_punctuation_by_space, :encode_www_form, :encode_www_form_and_remove_punctuation
+    private_class_method :new, :call_service, :replace_punctuation_by_space, :encode_www_form, :encode_www_form_and_remove_punctuation, :download_file, :remove_file
   end
 end
