@@ -2,7 +2,7 @@ module AgileNotifier
   class Player
     class << self
       def play_on_osx(file)
-        fork { exec 'afplay', file }
+        system("afplay #{file}")
       end
     end
 
