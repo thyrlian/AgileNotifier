@@ -54,7 +54,7 @@ module AgileNotifier
         end
 
         def osx_speech(text)
-          fork { exec "say #{text}"}
+          system("say #{text}")
         end
 
         def tts_api(text)
