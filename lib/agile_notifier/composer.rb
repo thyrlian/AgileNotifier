@@ -17,7 +17,8 @@ module AgileNotifier
       end
 
       def random_picker(list)
-        list[Random.rand(list.size)]
+        random_number = rand(list.size)
+        list[random_number]
       end
     end
 
