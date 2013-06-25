@@ -13,7 +13,7 @@ module AgileNotifier
         repo = args[:repo]
         revision = args[:revision] || args[:build].revision
         committer_name = repo.get_committer_name_of_a_commit(revision)
-        random_picker(SENTENCES).gsub(/%{committer_name}/, committer_name)
+        random_picker(SENTENCES).gsub(/%\{committer_name\}/, committer_name)
       end
 
       def random_picker(list)
