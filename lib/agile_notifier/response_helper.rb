@@ -21,8 +21,20 @@ module AgileNotifier
         end
       end
 
-      def get_value_of_key_from_json(key, json_response_body)
-        json_response_body[key]
+      def get_value_of_key_from_json(key, collection) # only returns the first match if duplicated keys exist
+        if collection.respond_to?(:each_pair) # behaves like Hash
+          return collection[key] if collection.has_key?(key)
+          collection.keys.each do |k|
+            value = send(__method__, key, collection[k]) # recursive call
+            return value if !value.nil?
+          end
+        elsif collection.respond_to?(:each_index) # behaves like Array
+          collection.each do |x|
+            value = send(__method__, key, x) # recursive call
+            return value if !value.nil?
+          end
+        end
+        return nil
       end
     end
   end
