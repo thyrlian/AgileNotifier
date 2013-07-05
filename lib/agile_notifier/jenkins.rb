@@ -50,16 +50,8 @@ module AgileNotifier
         end
 
         def get_revision
-          scm_info = Jenkins.get_value('actions', @url)
-          # TODO: dirty here, but don't know what to do, the position is always changing
-          if !scm_info[2].nil? && scm_info[2].size != 0
-            build_info = scm_info[2]
-          elsif !scm_info[3].nil? && scm_info[3].size != 0
-            build_info = scm_info[3]
-          else
-            build_info = nil
-          end
-          build_info.nil? ? nil : revision = build_info['lastBuiltRevision']['SHA1']
+          revision = Jenkins.get_value('lastBuiltRevision', @url)
+          revision.nil? ? nil : revision['SHA1']
         end
 
         def passed?
