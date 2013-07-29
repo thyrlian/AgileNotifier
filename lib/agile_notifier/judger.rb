@@ -11,6 +11,10 @@ module AgileNotifier
         on_condition(trackable.passed?, text)
       end
 
+      def on_fixed(trackable, text)
+        on_condition(trackable.fixed?, text)
+      end
+
       def on_condition(condition, text)
         TTS.speak(text) if condition
       end
