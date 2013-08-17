@@ -43,7 +43,13 @@ module AgileNotifier
         last_build.nil? ? nil : Build.new(last_build['number'], last_build['url'])
       end
 
+      def get_penultimate_build
+        last_build.get_previous_build
+      end
+
       class Build < CI::Job::Build
+        include Servable
+
         def get_result
           result = Jenkins.get_value('result', @url)
           result.nil? ? nil : result
@@ -54,12 +60,39 @@ module AgileNotifier
           revision.nil? ? nil : revision['SHA1']
         end
 
+        def get_previous_build
+          previous_number = @number - 1
+          if previous_number > 0
+            previous_url = @url.gsub(/\/#{@number}\//, "/#{previous_number}/")
+            previous_build = Build.new(previous_number, previous_url)
+            if is_available?(previous_url)
+              return previous_build
+            else
+              return previous_build.get_previous_build
+            end
+          else
+            return nil
+          end
+        end
+
+        def get_previous_result
+          get_previous_build.get_result
+        end
+
         def passed?
           @result == 'SUCCESS'
         end
 
         def failed?
           @result == 'FAILURE'
+        end
+
+        def fixed?
+          if get_previous_result == 'FAILURE'
+            return passed?
+          else
+            return nil # if previous result is SUCCESS, doesn't make sense, then return nil
+          end
         end
       end
     end

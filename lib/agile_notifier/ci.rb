@@ -23,20 +23,29 @@ module AgileNotifier
 
     class Job
       attr_accessor :name, :url
-      attr_reader :last_build
+      attr_reader :last_build, :penultimate_build
 
       def initialize(name, url)
         @name = name
         @url = url
         @last_build = get_last_build
+        @penultimate_build = get_penultimate_build
       end
 
       def get_last_build
         raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
       end
 
+      def get_penultimate_build
+        raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
+      end
+
       def update_last_build
         @last_build = get_last_build
+      end
+
+      def update_penultimate_build
+        @penultimate_build = get_penultimate_build
       end
 
       class Build
@@ -56,6 +65,14 @@ module AgileNotifier
         end
 
         def get_revision
+          raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
+        end
+
+        def get_previous_build
+          raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
+        end
+
+        def get_previous_result
           raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
         end
       end
