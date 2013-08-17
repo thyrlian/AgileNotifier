@@ -11,7 +11,7 @@ module AgileNotifier
         on_condition(trackable.passed?, text)
       end
 
-      def on_fixed(trackable, text)
+      def on_fix(trackable, text)
         on_condition(trackable.fixed?, text)
       end
 
