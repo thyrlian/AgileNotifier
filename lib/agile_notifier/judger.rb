@@ -16,7 +16,12 @@ module AgileNotifier
       end
 
       def on_condition(condition, text)
-        TTS.speak(text) if condition
+        if condition
+          TTS.speak(text)
+          true
+        else
+          false
+        end
       end
     end
 
