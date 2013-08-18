@@ -2,8 +2,7 @@ require_relative 'helper'
 
 class TestServable < Test::Unit::TestCase
   def setup
-    @obj = Object.new
-    @obj.extend(Servable)
+    @obj = Servable::PrivateMethods.new
   end
   
   def test_is_https_request
