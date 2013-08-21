@@ -1,5 +1,6 @@
 require_relative 'ci'
 require_relative 'response_helper'
+require 'uri'
 require 'json'
 require 'httparty'
 
@@ -10,7 +11,7 @@ module AgileNotifier
     JSON_API = '/api/json'
 
     def self.get_value(key, url)
-      get_value_of_key(key, url + JSON_API)
+      get_value_of_key(key, url.gsub(/\/$/, '') + JSON_API)
     end
 
     def initialize(url, *names)
@@ -20,7 +21,7 @@ module AgileNotifier
       else
         @jobs = []
         names.each do |name|
-          job_url = "#{@url}/job/#{name}/"
+          job_url = URI.encode("#{@url}/job/#{name}/")
           @jobs.push(Job.new(name, job_url))
         end
       end
