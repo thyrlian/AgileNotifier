@@ -17,7 +17,7 @@ module AgileNotifier
         if response.code == 200
           return JSON.parse(response.body)
         else
-          raise(ResponseError, "HTTP Status Code: #{response.code} - #{response.parsed_response}", caller[1])
+          raise(ResponseError, "HTTP Status Code: #{response.code} - #{response.parsed_response}", caller)
         end
       end
 
