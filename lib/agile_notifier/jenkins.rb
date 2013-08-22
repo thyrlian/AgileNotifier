@@ -63,17 +63,15 @@ module AgileNotifier
 
         def get_previous_build
           previous_number = @number - 1
-          if previous_number > 0
+          while previous_number > 0
             previous_url = @url.gsub(/\/#{@number}\//, "/#{previous_number}/")
-            previous_build = Build.new(previous_number, previous_url)
             if is_available?(previous_url)
-              return previous_build
+              return Build.new(previous_number, previous_url)
             else
-              return previous_build.get_previous_build
+              previous_number -= 1
             end
-          else
-            return nil
           end
+          return nil
         end
 
         def get_previous_result
