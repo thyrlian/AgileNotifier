@@ -4,6 +4,7 @@ require 'agile_notifier'
 task :default => :test
 
 require 'rake/testtask'
+desc 'Run Unit Test'
 Rake::TestTask.new do |test|
   test.libs << 'test'
   test.test_files = FileList['test/test*.rb']
