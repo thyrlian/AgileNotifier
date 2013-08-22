@@ -32,7 +32,7 @@ module AgileNotifier
       @scm_repos.push(repo)
     end
     
-    def scm_get(scm_type, args)
+    def scm_get(scm_type, args = {})
       enterprise = args.fetch(:enterprise, false)
       if enterprise
         @scm = scm_type.new_enterprise_version(@scm_url)
