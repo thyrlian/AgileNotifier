@@ -19,5 +19,8 @@ Configuration.set do
   scm_url 'https://github.xyzcompany.com'
   scm_repo user: 'your_user_name', repo: 'your_repository_name'
   scm_get Github, enterprise: true
+
+  speak 'en'
+  play 'Boing' # Mac OSX Text to Speech voice name
 end
 ```
