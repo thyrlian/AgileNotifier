@@ -3,21 +3,21 @@ require_relative 'tts'
 module AgileNotifier
   class Judger
     class << self
-      def on_fail(trackable, text)
-        on_condition(trackable.failed?, text)
+      def on_fail(trackable, text, args)
+        on_condition(trackable.failed?, text, args)
       end
 
-      def on_pass(trackable, text)
-        on_condition(trackable.passed?, text)
+      def on_pass(trackable, text, args)
+        on_condition(trackable.passed?, text, args)
       end
 
-      def on_fix(trackable, text)
-        on_condition(trackable.fixed?, text)
+      def on_fix(trackable, text, args)
+        on_condition(trackable.fixed?, text, args)
       end
 
-      def on_condition(condition, text)
+      def on_condition(condition, text, args)
         if condition
-          TTS.speak(text)
+          TTS.speak(text, args)
           true
         else
           false
