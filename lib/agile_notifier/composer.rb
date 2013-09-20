@@ -30,7 +30,7 @@ module AgileNotifier
       end
 
       def blame_committer(committer_name, language)
-        random_picker(SENTENCES[language.to_s.downcase.intern]).gsub(/%\{committer_name\}/, committer_name)
+        random_picker(SENTENCES[language]).gsub(/%\{committer_name\}/, committer_name)
       end
 
       def random_picker(list)

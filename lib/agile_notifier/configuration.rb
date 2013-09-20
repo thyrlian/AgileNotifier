@@ -45,6 +45,14 @@ module AgileNotifier
       return @scm
     end
 
+    def speak(language)
+      @language = language.to_s.downcase.intern
+    end
+
+    def play(voice)
+      @voice = voice
+    end
+
     private_class_method :new
   end
 end
