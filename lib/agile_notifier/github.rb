@@ -1,7 +1,7 @@
-require_relative 'scm'
-require_relative 'response_helper'
 require 'json'
 require 'httparty'
+require_relative 'scm'
+require_relative 'response_helper'
 
 module AgileNotifier
   class Github < SCM

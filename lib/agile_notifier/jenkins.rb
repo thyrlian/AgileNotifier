@@ -1,8 +1,8 @@
-require_relative 'ci'
-require_relative 'response_helper'
 require 'uri'
 require 'json'
 require 'httparty'
+require_relative 'ci'
+require_relative 'response_helper'
 
 module AgileNotifier
   class Jenkins < CI
