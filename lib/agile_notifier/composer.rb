@@ -39,6 +39,6 @@ module AgileNotifier
       end
     end
 
-    private_class_method :random_picker
+    private_class_method :blame_committer, :random_picker
   end
 end
