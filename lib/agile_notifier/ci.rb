@@ -21,6 +21,14 @@ module AgileNotifier
       raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
     end
 
+    def job
+      if @jobs.size == 1
+        return @jobs.first
+      else
+        raise('There are more than one job, please use method [jobs] instead of [job]')
+      end
+    end
+
     class Job
       attr_accessor :name, :url
       attr_reader :last_build, :penultimate_build

@@ -11,6 +11,14 @@ module AgileNotifier
       @repositories.push(repository)
     end
 
+    def repository
+      if @repositories.size == 1
+        return @repositories.first
+      else
+        raise('There are more than one repository, please use method [repositories] instead of [repository]')
+      end
+    end
+
     class Repository
       attr_accessor :user, :repo, :url
 
