@@ -1,3 +1,5 @@
+require_relative '../agile_notifier'
+
 module AgileNotifier
   class Configuration
     def initialize(&blk)
@@ -51,6 +53,14 @@ module AgileNotifier
 
     def play(voice)
       @voice = voice
+    end
+
+    def alert_on_fail
+      text = Composer.blame_committer_of_a_commit(repo: @scm.repository, revision: @ci.job.last_build.revision, language: @language)
+      args = Hash.new
+      args[:language] = @language if @language
+      args[:voice] = @voice if @voice
+      Judger.on_fail(@ci.job.last_build, text, args)
     end
 
     private_class_method :new
