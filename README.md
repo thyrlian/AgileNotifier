@@ -12,7 +12,7 @@ E.g.:
 include AgileNotifier
 
 Configuration.set do
-  ci_url 'http://10.250.0.1:8080'
+  ci_url 'http://x.x.x.x:8080'
   ci_job 'your-project-continuous-build'
   ci_get Jenkins
 
@@ -20,7 +20,14 @@ Configuration.set do
   scm_repo user: 'your_user_name', repo: 'your_repository_name'
   scm_get Github, enterprise: true
 
+  # for non-enterprise version
+  # scm_url 'https://api.github.com'
+  # scm_repo user: 'your_user_name', repo: 'your_repository_name'
+  # scm_get Github
+
   speak 'en'
-  play 'Boing' # Mac OSX Text to Speech voice name
+  play 'Boing' # Mac OSX Text to Speech voice name, optional field
+
+  alert_on_fail
 end
 ```
