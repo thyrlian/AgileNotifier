@@ -1,3 +1,7 @@
+# encoding: utf-8
+
+require File.expand_path('./lib/agile_notifier', __FILE__)
+
 Gem::Specification.new do |s|
   s.name        = 'agile_notifier'
   s.version     = AgileNotifier::VERSION
