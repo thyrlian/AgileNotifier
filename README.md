@@ -8,7 +8,7 @@ In a modern agile team, members would like to be notified once their Continuous 
 The funny thing is that, whenever a build fails, it can blame whoever submitted the commit, in whatever language you want, and even the sentenses can be randomly chosen each time :)
 
 E.g.:
-```
+```ruby
 include AgileNotifier
 
 Configuration.set do
