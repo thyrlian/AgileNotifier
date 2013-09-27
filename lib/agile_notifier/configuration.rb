@@ -56,13 +56,26 @@ module AgileNotifier
     end
 
     def alert_on_fail
-      text = Composer.blame_committer_of_a_commit(repo: @scm.repository, revision: @ci.job.last_build.revision, language: @language)
+      alert(:blame, :fail)
+    end
+
+    def alert_on_fix
+      alert(:praise, :fix)
+    end
+
+    def alert(composer_type, judger_type)
       args = Hash.new
-      args[:language] = @language if @language
+      args[:language] = @language
       args[:voice] = @voice if @voice
-      Judger.on_fail(@ci.job.last_build, text, args)
+      composer_type = composer_type.to_s.downcase
+      judger_type = judger_type.to_s.downcase
+      composer_method = "#{composer_type}_committer_of_a_commit".intern
+      judger_method = "on_#{judger_type}".intern
+      text = Composer.send(composer_method, repo: @scm.repository, revision: @ci.job.last_build.revision, language: @language)
+      Judger.send(judger_method, @ci.job.last_build, text, args)
     end
 
     private_class_method :new
+    private :alert
   end
 end

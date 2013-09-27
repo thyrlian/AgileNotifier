@@ -2,7 +2,7 @@
 
 module AgileNotifier
   class Composer
-    SENTENCES = {
+    SENTENCES_BLAME = {
         de: [
                 "%{committer_name} hat den Build kaputt gemacht.",
                 "Schießt %{committer_name} mit der Nerf Gun ab!",
@@ -20,17 +20,52 @@ module AgileNotifier
             ]
     }
 
+    SENTENCES_PRAISE = {
+        de: [
+                "%{committer_name}",
+                "%{committer_name}",
+                "%{committer_name}"
+            ],
+        en: [
+                "%{committer_name} has fixed the job.",
+                "%{committer_name} is super brilliant!",
+                "%{committer_name} saved the world."
+            ],
+        zh: [
+                "%{committer_name}很厉害啊, 修复了构建.",
+                "%{committer_name}是个好同志, 该涨工资了.",
+                "%{committer_name}是当代活雷锋啊!"
+            ]
+    }
+
     class << self
       def blame_committer_of_a_commit(args)
+        committer_name = get_committer_name_of_a_commit(args)
+        blame_committer(committer_name, args[:language])
+      end
+
+      def praise_committer_of_a_commit(args)
+        committer_name = get_committer_name_of_a_commit(args)
+        praise_committer(committer_name, args[:language])
+      end
+
+      def get_committer_name_of_a_commit(args)
         repo = args[:repo]
         revision = args[:revision] || args[:build].revision
-        language = args[:language]
-        committer_name = repo.get_committer_name_of_a_commit(revision)
-        blame_committer(committer_name, language)
+        repo.get_committer_name_of_a_commit(revision)
       end
 
       def blame_committer(committer_name, language)
-        random_picker(SENTENCES[language]).gsub(/%\{committer_name\}/, committer_name)
+        mention_committer(committer_name, SENTENCES_BLAME[language])
+      end
+
+      def praise_committer(committer_name, language)
+        mention_committer(committer_name, SENTENCES_PRAISE[language])
+      end
+
+      def mention_committer(committer_name, sentences)
+        sentence = random_picker(sentences)
+        sentence.gsub(/%\{committer_name\}/, committer_name)
       end
 
       def random_picker(list)
@@ -39,6 +74,6 @@ module AgileNotifier
       end
     end
 
-    private_class_method :blame_committer, :random_picker
+    private_class_method :get_committer_name_of_a_commit, :blame_committer, :praise_committer, :mention_committer, :random_picker
   end
 end
