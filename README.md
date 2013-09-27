@@ -29,5 +29,6 @@ Configuration.set do
   play 'Boing' # Mac OSX Text to Speech voice name, optional field
 
   alert_on_fail
+  alert_on_fix
 end
 ```
