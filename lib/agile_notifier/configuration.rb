@@ -3,6 +3,7 @@ require_relative '../agile_notifier'
 module AgileNotifier
   class Configuration
     def initialize(&blk)
+      @current_module = Object.const_get(self.class.to_s.split('::').first)
       instance_eval(&blk)
     end
 
@@ -22,7 +23,7 @@ module AgileNotifier
     end
 
     def ci_get(ci_type)
-      @ci = ci_type.new(@ci_url, *@ci_jobs)
+      @ci = @current_module.const_get(ci_type).new(@ci_url, *@ci_jobs)
     end
     
     def scm_url(url)
@@ -37,9 +38,9 @@ module AgileNotifier
     def scm_get(scm_type, args = {})
       enterprise = args.fetch(:enterprise, false)
       if enterprise
-        @scm = scm_type.new_enterprise_version(@scm_url)
+        @scm = @current_module.const_get(scm_type).new_enterprise_version(@scm_url)
       else
-        @scm = scm_type.new(@scm_url)
+        @scm = @current_module.const_get(scm_type).new(@scm_url)
       end
       @scm_repos.each do |repo|
         @scm.add_repository(repo)

@@ -11,19 +11,19 @@ The funny thing is that, whenever a build fails, it can blame whoever submitted 
 ```ruby
 include AgileNotifier
 
-Configuration.set do
+AgileNotifier::Configuration.set do
   ci_url 'http://x.x.x.x:8080'
   ci_job 'your-project-continuous-build'
-  ci_get Jenkins
+  ci_get 'Jenkins'
 
   scm_url 'https://github.xyzcompany.com'
   scm_repo user: 'your_user_name', repo: 'your_repository_name'
-  scm_get Github, enterprise: true
+  scm_get 'Github', enterprise: true
 
   # for non-enterprise version
   # scm_url 'https://api.github.com'
   # scm_repo user: 'your_user_name', repo: 'your_repository_name'
-  # scm_get Github
+  # scm_get 'Github'
 
   speak 'en'
   play 'Boing' # Mac OSX Text to Speech voice name, optional field
