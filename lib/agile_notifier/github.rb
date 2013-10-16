@@ -10,6 +10,17 @@ module AgileNotifier
     ENTERPRISE_API = '/api/v3'
     USERAGENT = 'AgileNotifier'
 
+    def initialize(url)
+      super
+      if url.include?(ENTERPRISE_API)
+        status_url = url.gsub(/:\/\/api\./, '://status.') + '/status.json'
+      else
+        status_url = url.gsub(/:\/\/api\./, '://status.') + '/api/status.json'
+      end
+      status = self.class.get_value('status', status_url)
+      raise('Github is not available.') unless status == 'good'
+    end
+
     class << self
       def new_enterprise_version(url)
         new(url + ENTERPRISE_API)
