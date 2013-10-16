@@ -13,12 +13,20 @@ module AgileNotifier
     def initialize(url)
       super
       if url.include?(ENTERPRISE_API)
-        status_url = url.gsub(/:\/\/api\./, '://status.') + '/status.json'
+        status_url = url + '/zen'
+        begin
+          status = HTTParty.get(status_url).code
+          availability = ( status == 200 )
+        rescue => e
+          puts e.message
+          availability = false
+        end
       else
         status_url = url.gsub(/:\/\/api\./, '://status.') + '/api/status.json'
+        status = self.class.get_value('status', status_url)
+        availability = ( status == 'good' )
       end
-      status = self.class.get_value('status', status_url)
-      raise('Github is not available.') unless status == 'good'
+      raise('Github is not available.') unless availability
     end
 
     class << self
