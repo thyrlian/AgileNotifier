@@ -9,8 +9,6 @@ The funny thing is that, whenever a build fails, it can blame whoever submitted 
 
 ## Examples of Usage:
 ```ruby
-include AgileNotifier
-
 AgileNotifier::Configuration.set do
   ci_url 'http://x.x.x.x:8080'
   ci_job 'your-project-continuous-build'
