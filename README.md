@@ -5,7 +5,7 @@ Agile Notifier - an easy way of monitoring Agile SW Engineering by auralization 
 
 In a modern agile team, members would like to be notified once their Continuous Integration job fails which may be caused by anyone's recent commit.  That's the initial idea of this tool.
 
-The funny thing is that, whenever a build fails, it can blame whoever submitted the commit, in whatever language you want, and even the sentenses can be randomly chosen each time :)
+The funny thing is that, whenever a build fails, it can blame whoever submitted the commit (or praises the committer who fixed it), in whatever language you want, and even the sentenses can be randomly chosen each time :)
 
 ## Examples of Usage:
 ```ruby
