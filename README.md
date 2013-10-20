@@ -1,11 +1,13 @@
 AgileNotifier
 =============
 
-Agile Notifier - an easy way of monitoring Agile SW Engineering by auralization change.  It supports most of the popular tools including **CI** (Continuous Integration), **SCM** (Source Control Management), and **ITS** (Issue Tracking System).  Of course you can integrate more tools as you want.  And the simple beautiful DSL syntax gives you a quick start.
+Agile Notifier - an easy way of monitoring Agile SW Engineering by auralization change.  It supports most of the popular tools including **CI** (Continuous Integration), **SCM** (Source Control Management), and **ITS** (Issue Tracking System).  Of course you can integrate more tools as you want.  And the simple beautiful DSL syntax gives you a rocket start.
 
-In a modern agile team, members would like to be notified once their Continuous Integration job fails which may be caused by anyone's recent commit.  That's the initial idea of this tool.
+In a modern agile team, members would like to be notified immediately once their Continuous Integration job fails (but building process usually takes quite a while).  That's the initial idea of this tool.
 
-The funny thing is that, whenever a build fails, it can blame whoever submitted the commit (or praises the committer who fixed it), in whatever language you want, and even the sentenses can be randomly chosen each time :)
+The joy of this tool is that, whenever a build fails, it can blame whoever submitted the commit (or praises the committer who fixed it), in whatever language you want, and even the sentenses can be randomly chosen each time :)
+
+Have fun with it!
 
 ## Examples of Usage:
 ```ruby
