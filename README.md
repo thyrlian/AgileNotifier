@@ -26,7 +26,7 @@ AgileNotifier::Configuration.set do
   # scm_get 'Github'
 
   speak 'en'
-  play 'Boing' # Mac OSX Text to Speech voice name, optional field
+  play 'Boing' # Mac OSX TTS voice name(optional field), unnecessary for other OS
 
   alert_on_fail
   alert_on_fix
