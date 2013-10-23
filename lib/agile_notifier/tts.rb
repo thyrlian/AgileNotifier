@@ -57,7 +57,8 @@ module AgileNotifier
         end
 
         def speak_on_linux(text, language, voice = nil)
-          raise(NotImplementedError, "Method [#{__method__}] is empty, please implement", caller)
+          # TODO: should check service availability first, if not raise exception
+          mary_tts(text, language)
         end
 
         def speak_on_osx(text, language, voice)
