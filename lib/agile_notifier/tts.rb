@@ -63,13 +63,13 @@ module AgileNotifier
 
         def speak_on_osx(text, language, voice)
           if voice
-            unless system(osx_speech(voice, text))
+            unless osx_speech(voice, text)
               raise("No available voice found, please check if you have downloaded voice [#{voice}] in System Preferences -> Speech")
             end
           else
             list_of_available_voices = `say -v '?'`.split("\n")
             voices = list_of_available_voices.inject({}) do |collection, record|
-              matched_results = record.match(/^(\w+).*?(\w{2})_/)
+              matched_results = record.match(/^(.*[^\s])\s+([a-z]{2})_[A-Z]{2}\s+/)
               available_language = matched_results[2].downcase.intern
               available_voice = matched_results[1]
               if collection.has_key?(available_language)
@@ -79,7 +79,7 @@ module AgileNotifier
               end
               collection
             end
-            system(osx_speech(voices[language].first, text))
+            osx_speech(voices[language].first, text)
           end
         end
 
@@ -88,7 +88,7 @@ module AgileNotifier
         end
 
         def osx_speech(voice, text)
-          "say -v #{voice} #{text} > /dev/null 2>&1"
+          system("say -v #{voice} #{text} > /dev/null 2>&1")
         end
 
         def tts_api(text)
