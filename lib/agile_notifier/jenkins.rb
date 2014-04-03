@@ -88,7 +88,20 @@ module AgileNotifier
         end
 
         def failed?
-          @result == 'FAILURE'
+          if @result == 'FAILURE'
+            previous_build = get_previous_build
+            if previous_build
+              if @revision != previous_build.get_revision # check if it's triggered by new commit
+                return true
+              else
+                return false # actually it's still failed, but ignore it intentionally
+              end
+            else
+              return true
+            end
+          else
+            return false
+          end
         end
 
         def fixed?
