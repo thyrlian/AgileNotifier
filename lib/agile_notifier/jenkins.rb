@@ -83,19 +83,27 @@ module AgileNotifier
           end
         end
 
+        def is_triggered_manually?
+          previous_build = get_previous_build
+          if previous_build
+            if @revision != previous_build.get_revision
+              return false
+            else
+              return true
+            end
+          else
+            return false
+          end
+        end
+
         def passed?
           @result == 'SUCCESS'
         end
 
         def failed?
           if @result == 'FAILURE'
-            previous_build = get_previous_build
-            if previous_build
-              if @revision != previous_build.get_revision # check if it's triggered by new commit
-                return true
-              else
-                return false # actually it's still failed, but ignore it intentionally
-              end
+            if is_triggered_manually?
+              return false # actually it's still failed, but ignore it intentionally
             else
               return true
             end
