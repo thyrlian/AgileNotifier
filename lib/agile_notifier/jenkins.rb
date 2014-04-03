@@ -75,7 +75,12 @@ module AgileNotifier
         end
 
         def get_previous_result
-          get_previous_build.get_result
+          previous_build = get_previous_build
+          if previous_build
+            return previous_build.get_result
+          else
+            return nil
+          end
         end
 
         def passed?
