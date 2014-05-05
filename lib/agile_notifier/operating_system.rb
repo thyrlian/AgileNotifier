@@ -1,10 +1,10 @@
 module AgileNotifier
   class OperatingSystem
     TYPE = {
-        lin: 'linux',
-        mac: 'osx',
-        win: 'windows',
-        unknown: 'UNKNOWN'
+      lin: 'linux',
+      mac: 'osx',
+      win: 'windows',
+      unknown: 'UNKNOWN'
     }
 
     class << self
