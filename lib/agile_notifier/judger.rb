@@ -6,6 +6,10 @@ module AgileNotifier
       def on_fail(trackable, text, args)
         on_condition(trackable.failed?, text, args)
       end
+      
+      def on_unstable(trackable, text, args)
+        on_condition(trackable.unstable?, text, args)
+      end
 
       def on_pass(trackable, text, args)
         on_condition(trackable.passed?, text, args)

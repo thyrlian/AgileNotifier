@@ -3,51 +3,70 @@
 module AgileNotifier
   class Composer
     SENTENCES_BLAME = {
-        de: [
-                "%{committer_name} hat den Build kaputt gemacht.",
-                "Schießt %{committer_name} mit der Nerf Gun ab!",
-                "%{committer_name} hat Scheiße gebaut.",
-                "%Hilfe! Hilfe! %{committer_name} versucht mich zu töten!"
-            ],
-        en: [
-                "%{committer_name} has broken the build.",
-                "%{committer_name} fucked up the build.",
-                "What the fucking code has %{committer_name} pushed!"
-            ],
-        es: [
-                "%{committer_name} ha destruido la compilacion",
-                "que clase de codigo esta escribiendo %{committer_name} ? ",
-                "tal vez es mejor que %{committer_name} se dedique a otra cosa..."
-            ],
-        zh: [
-                "%{committer_name}在搞毛啊, 构建失败了!",
-                "%{committer_name}提交的什么烂代码啊?",
-                "请注意, %{committer_name}在搞破坏."
-            ]
+      de: [
+        "%{committer_name} hat den Build kaputt gemacht.",
+        "Schießt %{committer_name} mit der Nerf Gun ab!",
+        "%{committer_name} hat Scheiße gebaut.",
+        "%Hilfe! Hilfe! %{committer_name} versucht mich zu töten!"
+      ],
+      en: [
+        "%{committer_name} has broken the build.",
+        "%{committer_name} fucked up the build.",
+        "What the fucking code has %{committer_name} pushed!"
+      ],
+      es: [
+        "%{committer_name} ha destruido la compilacion",
+        "que clase de codigo esta escribiendo %{committer_name} ? ",
+        "tal vez es mejor que %{committer_name} se dedique a otra cosa..."
+      ],
+      zh: [
+        "%{committer_name}在搞毛啊, 构建失败了!",
+        "%{committer_name}提交的什么烂代码啊?",
+        "请注意, %{committer_name}在搞破坏."
+      ]
+    }
+    
+    SENTENCES_WARN = {
+      de: [
+        "%{committer_name} hat den Build krank gemacht.",
+        "%{committer_name} hat etwas nicht gut genug gemacht."
+      ],
+      en: [
+        "%{committer_name} has made the build sick.",
+        "%{committer_name} has done something not so good."
+      ],
+      es: [
+        "%{committer_name} ha hecho a los enfermos de generación.",
+        "%{committer_name} ha hecho algo malo."
+      ],
+      zh: [
+        "%{committer_name}让构建生病了.",
+        "%{committer_name}做了一件不太光荣的事."
+      ]
     }
 
     SENTENCES_PRAISE = {
-        de: [
-                "%{committer_name} hat den Build gefixt!",
-                "%{committer_name} ist ein Genie!",
-                "%{committer_name} hat die Welt gerettet!"
-            ],
-        en: [
-                "%{committer_name} has fixed the build.",
-                "%{committer_name} is super brilliant!",
-                "%{committer_name} saved the world.",
-                "%{committer_name} roundhouse kicked chuck norris' butt"
-            ],
-        es: [
-                "%{committer_name} ha reparado la compilacion",
-                "%{committer_name} es un genio!",
-                "%{committer_name} es el mejor programador de la historia!"
-            ],
-        zh: [
-                "%{committer_name}很厉害啊, 修复了构建.",
-                "%{committer_name}是个好同志, 该涨工资了.",
-                "%{committer_name}是当代活雷锋啊!"
-            ]
+      de: [
+        "%{committer_name} hat den Build gefixt!",
+        "%{committer_name} ist ein Genie!",
+        "%{committer_name} hat die Welt gerettet!"
+      ],
+      en: [
+        "%{committer_name} has fixed the build.",
+        "%{committer_name} is super brilliant!",
+        "%{committer_name} saved the world.",
+        "%{committer_name} roundhouse kicked chuck norris' butt"
+      ],
+      es: [
+        "%{committer_name} ha reparado la compilacion",
+        "%{committer_name} es un genio!",
+        "%{committer_name} es el mejor programador de la historia!"
+      ],
+      zh: [
+        "%{committer_name}很厉害啊, 修复了构建.",
+        "%{committer_name}是个好同志, 该涨工资了.",
+        "%{committer_name}是当代活雷锋啊!"
+      ]
     }
 
     class << self

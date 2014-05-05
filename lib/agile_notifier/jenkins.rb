@@ -111,6 +111,18 @@ module AgileNotifier
             return false
           end
         end
+        
+        def unstable?
+          if @result == 'UNSTABLE'
+            if is_triggered_manually?
+              return false
+            else
+              return true
+            end
+          else
+            return false
+          end
+        end
 
         def fixed?
           if get_previous_result == 'FAILURE'

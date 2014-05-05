@@ -59,6 +59,10 @@ module AgileNotifier
     def alert_on_fail
       alert(:blame, :fail)
     end
+    
+    def alert_on_unstable
+      alert(:warn, :unstable)
+    end
 
     def alert_on_fix
       alert(:praise, :fix)
