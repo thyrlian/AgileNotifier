@@ -85,12 +85,8 @@ module AgileNotifier
 
         def is_triggered_manually?
           previous_build = get_previous_build
-          if previous_build
-            if @revision != previous_build.get_revision
-              return false
-            else
-              return true
-            end
+          if previous_build && @revision == previous_build.get_revision
+            return true
           else
             return false
           end
@@ -101,24 +97,16 @@ module AgileNotifier
         end
 
         def failed?
-          if @result == 'FAILURE'
-            if is_triggered_manually?
-              return false # actually it's still failed, but ignore it intentionally
-            else
-              return true
-            end
+          if @result == 'FAILURE' && !is_triggered_manually?
+            return true
           else
             return false
           end
         end
         
         def unstable?
-          if @result == 'UNSTABLE'
-            if is_triggered_manually?
-              return false
-            else
-              return true
-            end
+          if @result == 'UNSTABLE' && !is_triggered_manually?
+            return true
           else
             return false
           end
