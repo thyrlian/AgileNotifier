@@ -74,6 +74,11 @@ module AgileNotifier
         committer_name = get_committer_name_of_a_commit(args)
         blame_committer(committer_name, args[:language])
       end
+      
+      def warn_committer_of_a_commit(args)
+        committer_name = get_committer_name_of_a_commit(args)
+        warn_committer(committer_name, args[:language])
+      end
 
       def praise_committer_of_a_commit(args)
         committer_name = get_committer_name_of_a_commit(args)
@@ -88,6 +93,10 @@ module AgileNotifier
 
       def blame_committer(committer_name, language)
         mention_committer(committer_name, SENTENCES_BLAME[language])
+      end
+      
+      def warn_committer(committer_name, language)
+        mention_committer(committer_name, SENTENCES_WARN[language])
       end
 
       def praise_committer(committer_name, language)
