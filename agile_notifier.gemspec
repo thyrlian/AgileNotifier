@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.homepage    = 'https://github.com/thyrlian/AgileNotifier'
 
-  s.add_runtime_dependency('json', '~> 1.8.0')
-  s.add_runtime_dependency('httparty', '~> 0.11.0')
-  s.add_development_dependency('mocha', '~> 0.14.0')
+  s.add_runtime_dependency('json', '~> 1.8.0', '>= 1.8.0')
+  s.add_runtime_dependency('httparty', '~> 0.11.0', '>= 0.11.0')
+  s.add_development_dependency('mocha', '~> 0.14.0', '>= 0.14.0')
 end
