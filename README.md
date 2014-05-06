@@ -30,6 +30,7 @@ AgileNotifier::Configuration.set do
 
   alert_on_fail
   alert_on_fix
+  alert_on_unstable
 end
 ```
 
