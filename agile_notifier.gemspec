@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.name        = 'agile_notifier'
   s.version     = AgileNotifier::VERSION
   s.license     = 'MIT'
-  s.date        = '2013-05-22'
+  s.date        = '2014-05-06'
   s.summary     = %q{agile_notifier alerts you via making wonderful noises}
   s.description = %q{agile_notifier alerts you via making wonderful noises, make software development more fun}
   s.authors     = ['Jing Li']
