@@ -39,6 +39,4 @@ end
 
   * TTS service benefits from online MARY TTS Web Client: http://mary.dfki.de:59125/  While it has limited languages support, please check before use.
   * play command comes from package sox which is not pre-installed, you have to install manually beforehand by:
-  * ```
-sudo apt-get install sox libsox-fmt-all
-```
+  * ```sudo apt-get install sox libsox-fmt-all```
