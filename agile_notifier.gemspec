@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.version     = AgileNotifier::VERSION
   s.license     = 'MIT'
   s.date        = '2014-05-06'
-  s.summary     = %q{agile_notifier alerts you via making wonderful noises}
-  s.description = %q{agile_notifier alerts you via making wonderful noises, make software development more fun}
+  s.summary     = %q{agile_notifier alerts you via making wonderful noises when your Continuous Integration status changes.}
+  s.description = %q{agile_notifier alerts you via making wonderful noises when your Continuous Integration status changes.  It totally makes software development more agile and more fun.}
   s.authors     = ['Jing Li']
   s.email       = ['thyrlian@gmail.com']
   s.files       = `git ls-files`.split("\n")
