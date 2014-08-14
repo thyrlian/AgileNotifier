@@ -2,7 +2,7 @@
 
 module AgileNotifier
   class Composer
-    SENTENCES_BLAME = {
+    SENTENCES_BLAME_COMMITTER = {
       de: [
         "%{committer_name} hat den Build kaputt gemacht.",
         "Schießt %{committer_name} mit der Nerf Gun ab!",
@@ -26,7 +26,7 @@ module AgileNotifier
       ]
     }
     
-    SENTENCES_WARN = {
+    SENTENCES_WARN_COMMITTER = {
       de: [
         "%{committer_name} hat den Build krank gemacht.",
         "%{committer_name} hat etwas nicht gut genug gemacht."
@@ -45,7 +45,7 @@ module AgileNotifier
       ]
     }
 
-    SENTENCES_PRAISE = {
+    SENTENCES_PRAISE_COMMITTER = {
       de: [
         "%{committer_name} hat den Build gefixt!",
         "%{committer_name} ist ein Genie!",
@@ -92,15 +92,15 @@ module AgileNotifier
       end
 
       def blame_committer(committer_name, language)
-        mention_committer(committer_name, SENTENCES_BLAME[language])
+        mention_committer(committer_name, SENTENCES_BLAME_COMMITTER[language])
       end
       
       def warn_committer(committer_name, language)
-        mention_committer(committer_name, SENTENCES_WARN[language])
+        mention_committer(committer_name, SENTENCES_WARN_COMMITTER[language])
       end
 
       def praise_committer(committer_name, language)
-        mention_committer(committer_name, SENTENCES_PRAISE[language])
+        mention_committer(committer_name, SENTENCES_PRAISE_COMMITTER[language])
       end
 
       def mention_committer(committer_name, sentences)
