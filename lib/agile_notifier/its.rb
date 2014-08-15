@@ -2,8 +2,9 @@ module AgileNotifier
   class ITS
     include Servable
 
-    def initialize(url)
+    def initialize(url, *args)
       @url = url
+      @args = args
     end
 
     class Project

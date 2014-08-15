@@ -48,12 +48,17 @@ module AgileNotifier
       return @scm
     end
 
-    def its_url(url)
+    def its_url(url, *args)
       @its_url = url
+      @its_args = args
     end
 
     def its_get(its_type)
-      @its = @current_module.const_get(its_type).new(@its_url)
+      if @its_args.empty?
+        @its = @current_module.const_get(its_type).new(@its_url)
+      else
+        @its = @current_module.const_get(its_type).new(@its_url, *@its_args)
+      end
     end
 
     def speak(language)
