@@ -1,5 +1,7 @@
 module AgileNotifier
   class ITS
+    include Servable
+
     def initialize(url)
       @url = url
     end
