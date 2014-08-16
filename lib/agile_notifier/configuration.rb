@@ -4,6 +4,7 @@ module AgileNotifier
   class Configuration
     def initialize(&blk)
       @current_module = Object.const_get(self.class.to_s.split('::').first)
+      @its_args = Array.new
       instance_eval(&blk)
     end
 
@@ -48,17 +49,16 @@ module AgileNotifier
       return @scm
     end
 
-    def its_url(url, *args)
-      @its_url = url
-      @its_args = args
+    def its_url(url)
+      @its_args.unshift(@its_url = url)
+    end
+
+    def its_auth(username, password)
+      @its_args.push(username, password)
     end
 
     def its_get(its_type)
-      if @its_args.empty?
-        @its = @current_module.const_get(its_type).new(@its_url)
-      else
-        @its = @current_module.const_get(its_type).new(@its_url, *@its_args)
-      end
+      @its = @current_module.const_get(its_type).new(*@its_args)
     end
 
     def speak(language)
