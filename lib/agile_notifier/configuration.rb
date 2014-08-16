@@ -61,6 +61,10 @@ module AgileNotifier
       @its = @current_module.const_get(its_type).new(@its_args)
     end
 
+    def its_search(query)
+      @its.query_amount_of_tickets(query)
+    end
+
     def speak(language)
       @language = language.to_s.downcase.intern
     end

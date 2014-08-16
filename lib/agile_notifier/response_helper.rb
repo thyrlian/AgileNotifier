@@ -8,16 +8,22 @@ module AgileNotifier
   module ResponseHelper
     def get_value_of_key(key, *args)
       pm = PrivateMethods.new
-      pm.get_value_of_key_from_json(key, pm.get_json_response(*args))
+      pm.get_value_of_key_from_json(key, pm.request_json_response(*args))
     end
 
     class PrivateMethods
-      def get_json_response(*args)
-        response = HTTParty.get(*args)
-        if response.code == 200
-          return JSON.parse(response.body)
+      def request_json_response(*args)
+        method = (args[1].delete(:method) || :get).to_sym
+        supported_methods = [:get, :post, :put, :delete, :head, :options]
+        if supported_methods.include?(method)
+          response = HTTParty.send(method, *args)
+          if response.code.to_s.match(/^2\d{2}$/)
+            return JSON.parse(response.body)
+          else
+            raise(ResponseError, "HTTP Status Code: #{response.code} - #{response.parsed_response}", caller)
+          end
         else
-          raise(ResponseError, "HTTP Status Code: #{response.code} - #{response.parsed_response}", caller)
+          raise(RuntimeError, "Unsupported HTTP Method: #{method.to_s}", caller)
         end
       end
 

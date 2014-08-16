@@ -3,7 +3,7 @@ require_relative 'response_helper'
 
 module AgileNotifier
   class Jira < ITS
-    extend ResponseHelper
+    include ResponseHelper
 
     alias_method :original_is_available?, :is_available?
 
@@ -20,11 +20,19 @@ module AgileNotifier
       original_is_available?(@url + 'serverInfo')
     end
 
-    class << self
-      def get_value(key, url)
-        get_value_of_key(key, url, :headers => {'Content-Type' => 'application/json', 'User-Agent' => USERAGENT}, :basic_auth => {:username => @username, :password => @password})
-      end
+    def query_amount_of_tickets(jql)
+      get_value('total', jql)
     end
 
+    def get_value(key, jql, max = 1)
+      get_value_of_key(key,
+                       @url + 'search',
+                       :method => :post,
+                       :headers => {'Content-Type' => 'application/json', 'User-Agent' => USERAGENT},
+                       :basic_auth => {:username => @username, :password => @password},
+                       :body => {'jql' => jql, 'maxResults' => max}.to_json)
+    end
+
+    private :get_value
   end
 end
