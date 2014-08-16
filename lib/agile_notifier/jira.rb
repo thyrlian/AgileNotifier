@@ -10,9 +10,10 @@ module AgileNotifier
     API_VERSION_URL = '/rest/api/latest/'
     USERAGENT = 'AgileNotifier'
 
-    def initialize(url, username, password)
-      @url = url.gsub(/\/$/, '') + API_VERSION_URL
-      @username, @password = username, password
+    def initialize(args)
+      @url = args.fetch(:url).gsub(/\/$/, '') + API_VERSION_URL
+      @username = args.fetch(:username)
+      @password = args.fetch(:password)
     end
 
     def is_available?

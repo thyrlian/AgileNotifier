@@ -4,7 +4,7 @@ module AgileNotifier
   class Configuration
     def initialize(&blk)
       @current_module = Object.const_get(self.class.to_s.split('::').first)
-      @its_args = Array.new
+      @its_args = Hash.new
       instance_eval(&blk)
     end
 
@@ -50,15 +50,15 @@ module AgileNotifier
     end
 
     def its_url(url)
-      @its_args.unshift(@its_url = url)
+      @its_args[:url] = url
     end
 
     def its_auth(username, password)
-      @its_args.push(username, password)
+      @its_args.merge!(:username => username, :password => password)
     end
 
     def its_get(its_type)
-      @its = @current_module.const_get(its_type).new(*@its_args)
+      @its = @current_module.const_get(its_type).new(@its_args)
     end
 
     def speak(language)
