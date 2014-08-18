@@ -31,6 +31,17 @@ AgileNotifier::Configuration.set do
   alert_on_fail
   alert_on_fix
   alert_on_unstable
+  
+  its_url 'https://jira.atlassian.com'
+  its_auth 'jira_username', 'jira_password'
+  its_get 'Jira'
+  its_set_wip 'BAM', 'project = BAM AND status = Resolved AND resolution = Unresolved', 3
+  its_set_wip 'XXX', 'project = XXX AND status = Resolved AND resolution = Unresolved', 5
+  
+  speak 'en'
+  play 'Alex'
+  
+  alert_on_wip
 end
 ```
 
