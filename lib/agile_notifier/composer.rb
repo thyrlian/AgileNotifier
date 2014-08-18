@@ -69,7 +69,30 @@ module AgileNotifier
       ]
     }
 
+    SENTENCES_WARN_WIP_LIMIT = {
+        de: [
+            ""
+        ],
+        en: [
+            "Kanban WIP exceeds limit.",
+            "Kanban has hit a bottleneck.",
+            "Kanban has stacked too many items, is anyone working on it?"
+        ],
+        es: [
+            ""
+        ],
+        zh: [
+            "看板瓶颈上限超出",
+            "搞什么呢? 看板堆积太多工作了, 想被炒鱿鱼吗?",
+            "看板, 嘟嘟, 请注意. 看板, 嘟嘟, 请注意."
+        ]
+    }
+
     class << self
+      def warn_wip_limit(args)
+        random_picker(SENTENCES_WARN_WIP_LIMIT[args[:language]])
+      end
+
       def blame_committer_of_a_commit(args)
         committer_name = get_committer_name_of_a_commit(args)
         blame_committer(committer_name, args[:language])
@@ -114,6 +137,6 @@ module AgileNotifier
       end
     end
 
-    private_class_method :get_committer_name_of_a_commit, :blame_committer, :praise_committer, :mention_committer, :random_picker
+    private_class_method :get_committer_name_of_a_commit, :blame_committer, :warn_committer, :praise_committer, :mention_committer, :random_picker
   end
 end

@@ -1,4 +1,5 @@
 require_relative 'tts'
+require_relative 'composer'
 
 module AgileNotifier
   class Judger
@@ -17,6 +18,13 @@ module AgileNotifier
 
       def on_fix(trackable, text, args)
         on_condition(trackable.fixed?, text, args)
+      end
+
+      def on_limit(its, args)
+        its.exceeds_limit?.each do |key, value|
+          on_condition(value, "#{key} #{Composer.warn_wip_limit(args)}", args)
+          sleep 1.5 if value
+        end
       end
 
       def on_condition(condition, text, args)

@@ -10,16 +10,12 @@ module AgileNotifier
       raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
     end
 
-    class Project
-      def initialize(name)
-        @name = name
-      end
+    def set_limit(project, query, limit)
+      raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
     end
 
-    class Issue
-      def initialize(id)
-        @id = id
-      end
+    def exceeds_limit?
+      raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
     end
   end
 end

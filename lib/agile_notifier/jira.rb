@@ -14,6 +14,7 @@ module AgileNotifier
       @url = args.fetch(:url).gsub(/\/$/, '') + API_VERSION_URL
       @username = args.fetch(:username)
       @password = args.fetch(:password)
+      @wip = Hash.new
     end
 
     def is_available?
@@ -22,6 +23,16 @@ module AgileNotifier
 
     def query_amount_of_tickets(jql)
       get_value('total', jql)
+    end
+
+    def set_limit(project, query, limit)
+      @wip[project] = {:query => query, :limit => limit}
+    end
+
+    def exceeds_limit?
+      @wip.inject({}) do |result, (key, value)|
+        result.merge({key => query_amount_of_tickets(value[:query]) >= value[:limit]})
+      end
     end
 
     def get_value(key, jql, max = 1)

@@ -61,8 +61,8 @@ module AgileNotifier
       @its = @current_module.const_get(its_type).new(@its_args)
     end
 
-    def its_search(query)
-      @its.query_amount_of_tickets(query)
+    def its_set_wip(project, query, limit)
+      @its.set_limit(project, query, limit)
     end
 
     def speak(language)
@@ -86,18 +86,26 @@ module AgileNotifier
     end
 
     def alert(composer_type, judger_type)
-      args = Hash.new
-      args[:language] = @language
-      args[:voice] = @voice if @voice
       composer_type = composer_type.to_s.downcase
       judger_type = judger_type.to_s.downcase
       composer_method = "#{composer_type}_committer_of_a_commit".intern
       judger_method = "on_#{judger_type}".intern
       text = Composer.send(composer_method, repo: @scm.repository, revision: @ci.job.last_build.revision, language: @language)
-      Judger.send(judger_method, @ci.job.last_build, text, args)
+      Judger.send(judger_method, @ci.job.last_build, text, organize_args)
+    end
+
+    def alert_on_wip
+      Judger.on_limit(@its, organize_args)
+    end
+
+    def organize_args
+      args = Hash.new
+      args[:language] = @language
+      args[:voice] = @voice if @voice
+      args
     end
 
     private_class_method :new
-    private :alert
+    private :alert, :organize_args
   end
 end
