@@ -13,20 +13,17 @@ module AgileNotifier
 
     class PrivateMethods
       def request_json_response(*args)
-        if args[1].respond_to?(:delete)
-          method = (args[1].delete(:method) || :get).to_sym
-          supported_methods = [:get, :post, :put, :delete, :head, :options]
-          unless supported_methods.include?(method)
-            raise(RuntimeError, "Unsupported HTTP Method: #{method.to_s}", caller)
+        method = ((args[1].respond_to?(:delete) ? args[1].delete(:method) : false) || :get).to_sym
+        supported_methods = [:get, :post, :put, :delete, :head, :options]
+        unless supported_methods.include?(method)
+          raise(RuntimeError, "Unsupported HTTP Method: #{method.to_s}", caller)
+        else
+          response = HTTParty.send(method, *args)
+          if response.code.to_s.match(/^2\d{2}$/)
+            return JSON.parse(response.body)
+          else
+            raise(ResponseError, "HTTP Status Code: #{response.code} - #{response.parsed_response}", caller)
           end
-        else
-          method = :get
-        end
-        response = HTTParty.send(method, *args)
-        if response.code.to_s.match(/^2\d{2}$/)
-          return JSON.parse(response.body)
-        else
-          raise(ResponseError, "HTTP Status Code: #{response.code} - #{response.parsed_response}", caller)
         end
       end
 
