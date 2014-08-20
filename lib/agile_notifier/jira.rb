@@ -31,7 +31,7 @@ module AgileNotifier
 
     def exceeds_limit?
       @wip.inject({}) do |result, (key, value)|
-        result.merge({key => query_amount_of_tickets(value[:query]) >= value[:limit]})
+        result.merge({key => query_amount_of_tickets(value[:query]) > value[:limit]})
       end
     end
 
