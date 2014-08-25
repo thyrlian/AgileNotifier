@@ -71,7 +71,9 @@ module AgileNotifier
 
     SENTENCES_WARN_WIP_LIMIT = {
         de: [
-            ""
+            "Kanban WIP übersteigt das Limit.",
+            "Kanban hat einen Flaschenhals.",
+            "Kanban hat zu viele Tickets, arbeitet jemand schon daran?"
         ],
         en: [
             "Kanban WIP exceeds limit.",
@@ -79,7 +81,9 @@ module AgileNotifier
             "Kanban has stacked too many items, is anyone working on it?"
         ],
         es: [
-            ""
+            "El limite de WIP ha sido excedido.",
+            "El Kanban se esta llenando mucho.",
+            "Hay demasiados elementos Kanban, alguien esta trabajando en el?"
         ],
         zh: [
             "看板瓶颈上限超出",
