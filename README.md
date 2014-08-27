@@ -24,6 +24,12 @@ AgileNotifier::Configuration.set do
   # scm_url 'https://api.github.com'
   # scm_repo user: 'your_user_name', repo: 'your_repository_name'
   # scm_get 'Github'
+  
+  its_url 'https://jira.atlassian.com'
+  its_auth 'jira_username', 'jira_password'
+  its_get 'Jira'
+  its_set_wip 'BAM', 'project = BAM AND status = Resolved AND resolution = Unresolved', 3
+  its_set_wip 'XXX', 'project = XXX AND status = Resolved AND resolution = Unresolved', 5
 
   speak 'en'
   play 'Boing' # Mac OSX TTS voice name(optional field), unnecessary for other OS
@@ -31,16 +37,6 @@ AgileNotifier::Configuration.set do
   alert_on_fail
   alert_on_fix
   alert_on_unstable
-  
-  its_url 'https://jira.atlassian.com'
-  its_auth 'jira_username', 'jira_password'
-  its_get 'Jira'
-  its_set_wip 'BAM', 'project = BAM AND status = Resolved AND resolution = Unresolved', 3
-  its_set_wip 'XXX', 'project = XXX AND status = Resolved AND resolution = Unresolved', 5
-  
-  speak 'en'
-  play 'Alex'
-  
   alert_on_wip
 end
 ```
