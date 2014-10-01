@@ -1,10 +1,11 @@
 module AgileNotifier
   class SCM
-    attr_accessor :url, :repositories
+    attr_accessor :url, :repositories, :args
 
-    def initialize(url)
+    def initialize(url, args = {})
       @url = url
       @repositories = []
+      @args = args
     end
 
     def add_repository(repository)

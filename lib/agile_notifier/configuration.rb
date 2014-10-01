@@ -36,12 +36,20 @@ module AgileNotifier
       @scm_repos.push(repo)
     end
     
+    def scm_auth(auth)
+      username = auth.fetch(:username, nil)
+      password = auth.fetch(:password, nil)
+      @scm_authentication = username && password ? {:basic_auth => {:username => username, :password => password}} : nil
+    end
+    
     def scm_get(scm_type, args = {})
-      enterprise = args.fetch(:enterprise, false)
+      enterprise = args.fetch(:enterprise, false)      
+      params = [@scm_url]
+      params.push(@scm_authentication) if @scm_authentication
       if enterprise
-        @scm = @current_module.const_get(scm_type).new_enterprise_version(@scm_url)
+        @scm = @current_module.const_get(scm_type).new_enterprise_version(*params)
       else
-        @scm = @current_module.const_get(scm_type).new(@scm_url)
+        @scm = @current_module.const_get(scm_type).new(*params)
       end
       @scm_repos.each do |repo|
         @scm.add_repository(repo)

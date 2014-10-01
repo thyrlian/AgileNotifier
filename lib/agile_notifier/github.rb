@@ -9,13 +9,19 @@ module AgileNotifier
 
     ENTERPRISE_API = '/api/v3'
     USERAGENT = 'AgileNotifier'
+    
+    @@headers = {:headers => {'User-Agent' => USERAGENT}}
+    @@auth = nil
 
-    def initialize(url)
+    def initialize(url, args = {})
       super
+      @@auth = args.fetch(:basic_auth, nil)
       if url.include?(ENTERPRISE_API)
         status_url = url + '/zen'
         begin
-          status = HTTParty.get(status_url).code
+          args = [status_url]
+          args.push({:basic_auth => @@auth}) if @@auth
+          status = HTTParty.get(*args).code
           availability = ( status == 200 )
         rescue => e
           puts e.message
@@ -30,12 +36,14 @@ module AgileNotifier
     end
 
     class << self
-      def new_enterprise_version(url)
-        new(url + ENTERPRISE_API)
+      def new_enterprise_version(url, args = {})
+        new(url + ENTERPRISE_API, args)
       end
 
       def get_value(key, url)
-        get_value_of_key(key, url, :headers => {'User-Agent' => USERAGENT})
+        args = @@headers
+        args.merge!({:basic_auth => @@auth}) if @@auth
+        get_value_of_key(key, url, args)
       end
     end
 
