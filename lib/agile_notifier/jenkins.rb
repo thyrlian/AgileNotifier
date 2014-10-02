@@ -114,7 +114,7 @@ module AgileNotifier
         end
 
         def fixed?
-          if get_previous_result == 'FAILURE'
+          if get_previous_result != 'SUCCESS'
             return passed?
           else
             return nil # if previous result is SUCCESS, doesn't make sense, then return nil
