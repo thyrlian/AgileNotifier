@@ -114,8 +114,12 @@ module AgileNotifier
 
       def get_committer_name_of_a_commit(args)
         repo = args[:repo]
-        revision = args[:revision] || args[:build].revision
-        repo.get_committer_name_of_a_commit(revision)
+        revision = args[:build].nil? ? args[:revision] : args[:build].revision
+        if revision
+          repo.get_committer_name_of_a_commit(revision)
+        else
+          'Someone'
+        end
       end
 
       def blame_committer(committer_name, language)
