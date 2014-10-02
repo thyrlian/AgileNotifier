@@ -79,7 +79,7 @@ module AgileNotifier
               end
               collection
             end
-            osx_speech(voices[language].first, text)
+            osx_speech(voices[language.intern].first, text)
           end
         end
 
