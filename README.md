@@ -18,6 +18,10 @@ AgileNotifier::Configuration.set do
 
   scm_url 'https://github.xyzcompany.com'
   scm_repo user: 'your_user_name', repo: 'your_repository_name'
+  # scm_auth is optional, depends on if your github API access requires authentication
+  # if authentication is required, please choose either username & password or OAuth access token (latter one is recommended)
+  scm_auth username: 'github_login_username', password: 'github_login_password' # optional
+  scm_auth token: 'a1b2c3d4e5f6f0f0f0f0f0f0f0f0f6e5d4c3b2a1' # optional
   scm_get 'Github', enterprise: true
 
   # for non-enterprise version
