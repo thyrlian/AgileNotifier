@@ -1,3 +1,5 @@
+require_relative 'servable'
+
 module AgileNotifier
   class ITS
     include Servable

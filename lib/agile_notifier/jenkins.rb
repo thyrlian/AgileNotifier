@@ -3,6 +3,7 @@ require 'json'
 require 'httparty'
 require_relative 'ci'
 require_relative 'response_helper'
+require_relative 'servable'
 
 module AgileNotifier
   class Jenkins < CI
