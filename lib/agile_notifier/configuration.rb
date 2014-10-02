@@ -39,7 +39,9 @@ module AgileNotifier
     def scm_auth(auth)
       username = auth.fetch(:username, nil)
       password = auth.fetch(:password, nil)
+      token = auth.fetch(:token, nil)
       @scm_authentication = username && password ? {:basic_auth => {:username => username, :password => password}} : nil
+      @scm_authentication = {:Authorization => "token #{token}"} if token
     end
     
     def scm_get(scm_type, args = {})

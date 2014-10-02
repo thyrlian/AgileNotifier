@@ -15,12 +15,18 @@ module AgileNotifier
 
     def initialize(url, args = {})
       super
-      @@auth = args.fetch(:basic_auth, nil)
+      basic_auth = args.fetch(:basic_auth, nil)
+      access_token = args.fetch(:Authorization, nil)
+      if basic_auth
+        @@auth = {:basic_auth => basic_auth}
+      elsif access_token
+        @@headers[@@headers.keys.first] = @@headers.values.first.merge({'Authorization' => access_token})
+      end
       if url.include?(ENTERPRISE_API)
         status_url = url + '/zen'
         begin
           args = [status_url]
-          args.push({:basic_auth => @@auth}) if @@auth
+          args.push(@@auth && @@auth.has_key?(:basic_auth) ? @@headers.merge(@@auth) : @@headers)
           status = HTTParty.get(*args).code
           availability = ( status == 200 )
         rescue => e
@@ -42,7 +48,7 @@ module AgileNotifier
 
       def get_value(key, url)
         args = @@headers
-        args.merge!({:basic_auth => @@auth}) if @@auth
+        args.merge!(@@auth) if @@auth && @@auth.has_key?(:basic_auth)
         get_value_of_key(key, url, args)
       end
     end
