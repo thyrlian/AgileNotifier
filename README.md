@@ -1,6 +1,8 @@
 AgileNotifier
 =============
 
+[![Gem Version](https://badge.fury.io/rb/agile_notifier.svg)](http://badge.fury.io/rb/agile_notifier)
+
 Agile Notifier - an easy way of monitoring Agile SW Engineering by auralization change.  It supports most of the popular tools including **CI** (Continuous Integration), **SCM** (Source Control Management), and **ITS** (Issue Tracking System).  Of course you can integrate more tools as you want.  And the simple beautiful DSL syntax gives you a rocket start.
 
 In a modern agile team, members would like to be notified immediately once their Continuous Integration job fails (but building process usually takes quite a while).  That's the initial idea of this tool.
