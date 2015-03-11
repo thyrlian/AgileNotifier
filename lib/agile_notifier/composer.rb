@@ -7,7 +7,7 @@ module AgileNotifier
         "%{committer_name} hat den Build kaputt gemacht.",
         "Schießt %{committer_name} mit der Nerf Gun ab!",
         "%{committer_name} hat Scheiße gebaut.",
-        "%Hilfe! Hilfe! %{committer_name} versucht mich zu töten!"
+        "Hilfe! Hilfe! %{committer_name} versucht mich zu töten!"
       ],
       en: [
         "%{committer_name} has broken the build.",
