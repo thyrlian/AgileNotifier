@@ -69,7 +69,7 @@ module AgileNotifier
           else
             list_of_available_voices = `say -v '?'`.split("\n")
             voices = list_of_available_voices.inject({}) do |collection, record|
-              matched_results = record.match(/^(.*[^\s])\s+([a-z]{2})_[A-Z]{2}\s+/)
+              matched_results = record.match(/^(.*[^\s])\s+([a-z]{2})[_-][a-zA-Z]{2,}\s+/)
               available_language = matched_results[2].downcase.intern
               available_voice = matched_results[1]
               if collection.has_key?(available_language)
