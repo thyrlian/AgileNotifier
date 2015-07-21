@@ -45,10 +45,6 @@ module AgileNotifier
         last_build.nil? ? nil : Build.new(last_build['number'], last_build['url'])
       end
 
-      def get_penultimate_build
-        last_build.get_previous_build
-      end
-
       class Build < CI::Job::Build
         include Servable
 
