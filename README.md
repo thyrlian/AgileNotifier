@@ -29,7 +29,7 @@ AgileNotifier::Configuration.set do
   scm_get 'Github', enterprise: true
 
   # for non-enterprise version
-  # scm_url 'https://api.github.com'
+  # scm_url 'https://github.com'
   # scm_repo user: 'your_user_name', repo: 'your_repository_name'
   # scm_get 'Github'
   

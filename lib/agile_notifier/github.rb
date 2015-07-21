@@ -15,6 +15,7 @@ module AgileNotifier
 
     def initialize(url, args = {})
       super
+      @url.gsub!(/github\./, 'api.github.')
       basic_auth = args.fetch(:basic_auth, nil)
       access_token = args.fetch(:Authorization, nil)
       if basic_auth
