@@ -30,6 +30,9 @@ module AgileNotifier
       def on_condition(condition, text, args)
         if condition
           TTS.speak(text, args)
+          puts '=' * 70
+          puts text
+          puts '=' * 70
           true
         else
           false
