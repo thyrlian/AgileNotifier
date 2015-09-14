@@ -33,10 +33,10 @@ module AgileNotifier
       attr_accessor :name, :url
       attr_reader :current_build
 
-      def initialize(name, url)
+      def initialize(name, url, build_number = nil)
         @name = name
         @url = url
-        @current_build = get_last_build
+        @current_build = build_number.nil? ? get_last_build : get_specific_build(build_number.to_i)
       end
       
       def get_specific_build(build_number)
