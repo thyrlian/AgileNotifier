@@ -54,6 +54,10 @@ module AgileNotifier
           @result = get_result
           @revision = get_revision
         end
+        
+        def is_building?
+          raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
+        end
 
         def get_result
           raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)

@@ -47,6 +47,10 @@ module AgileNotifier
 
       class Build < CI::Job::Build
         include Servable
+        
+        def is_building?
+          Jenkins.get_value('building', @url)
+        end
 
         def get_result
           result = Jenkins.get_value('result', @url)
