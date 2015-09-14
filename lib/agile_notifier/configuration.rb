@@ -100,8 +100,9 @@ module AgileNotifier
       judger_type = judger_type.to_s.downcase
       composer_method = "#{composer_type}_committer_of_a_commit".intern
       judger_method = "on_#{judger_type}".intern
-      text = Composer.send(composer_method, repo: @scm.repository, revision: @ci.job.current_build.revision, language: @language)
-      Judger.send(judger_method, @ci.job.current_build, text, organize_args)
+      build = @ci.job.current_build
+      text = Composer.send(composer_method, repo: @scm.repository, revision: build.revision, language: @language)
+      Judger.send(judger_method, build, text, organize_args)
     end
 
     def alert_on_wip
