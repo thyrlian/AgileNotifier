@@ -5,6 +5,8 @@ module AgileNotifier
     def initialize(&blk)
       @current_module = Object.const_get(self.class.to_s.split('::').first)
       @its_args = Hash.new
+      options = Commander.order(ARGV)
+      @build_number = options[:build_number]
       instance_eval(&blk)
     end
 
@@ -100,8 +102,7 @@ module AgileNotifier
       judger_type = judger_type.to_s.downcase
       composer_method = "#{composer_type}_committer_of_a_commit".intern
       judger_method = "on_#{judger_type}".intern
-      build_number = Commander.order(ARGV)[:build_number]
-      build = build_number.nil? ? @ci.job.current_build : @ci.job.get_specific_build(build_number)
+      build = @build_number.nil? ? @ci.job.current_build : @ci.job.get_specific_build(@build_number)
       text = Composer.send(composer_method, repo: @scm.repository, revision: build.revision, language: @language)
       Judger.send(judger_method, build, text, organize_args)
     end
