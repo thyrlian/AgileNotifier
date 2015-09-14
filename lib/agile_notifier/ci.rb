@@ -38,6 +38,10 @@ module AgileNotifier
         @url = url
         @current_build = get_last_build
       end
+      
+      def get_specific_build(build_number)
+        raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
+      end
 
       def get_last_build
         raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
