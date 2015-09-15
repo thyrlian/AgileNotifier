@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.name        = 'agile_notifier'
   s.version     = AgileNotifier::VERSION
   s.license     = 'MIT'
-  s.date        = '2015-05-01'
+  s.date        = '2015-09-16'
   s.summary     = %q{agile_notifier alerts you via making wonderful noises when your Continuous Integration status changes.}
   s.description = %q{agile_notifier alerts you via making wonderful noises when your Continuous Integration status changes.  It totally makes software development more agile and more fun.}
   s.authors     = ['Jing Li']
