@@ -13,7 +13,7 @@ The joy of this tool is that, whenever a build fails, it can blame whoever submi
 
 Have fun with it!
 
-## Examples of Usage:
+## Examples of Usage
 ```ruby
 AgileNotifier::Configuration.set do
   ci_url 'http://x.x.x.x:8080'
@@ -49,7 +49,10 @@ AgileNotifier::Configuration.set do
 end
 ```
 
-## Notes:
+## Deploy to CI
+
+
+## Notes
 * TTS (Text To Speech) on Linux used here has two dependencies:
 
   * TTS service benefits from online MARY TTS Web Client: http://mary.dfki.de:59125/  While it has limited languages support, please check before use.
