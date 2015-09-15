@@ -52,10 +52,10 @@ end
 ## Deploy to CI
 First create a config file based on above DSL syntax.  (let's say the file name is [your_own_config].rb)
 ### Jenkins
-* The easy way:
+* The **easy** way:
   * Create [The_Notification_Job], Configure -> Build -> Execute shell -> ruby [your_own_config].rb
   * Your Main Job -> Configure -> Add post-build action -> Build other projects -> Projects to build -> [The_Notification_Job]
-* The hard but precise way:
+* The **hard** but **precise** way: (imagine there are a few developers pushing all the time, which makes your CI build one after one without rest)
   * Create [The_Notification_Job], Configure -> Build -> Execute shell -> ruby [your_own_config].rb -b $UPSTREAM_BUILD_NUMBER
   * Your Main Job -> Configure -> Add post-build action -> Trigger parameterized build on other projects -> Projects to build -> [The_Notification_Job] -> Add Parameters -> Predefined parameters -> UPSTREAM_BUILD_NUMBER=${BUILD_NUMBER}
 
