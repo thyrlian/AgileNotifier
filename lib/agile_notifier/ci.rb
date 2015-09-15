@@ -6,12 +6,7 @@ module AgileNotifier
     include Servable
     alias_method :original_is_available?, :is_available?
 
-    attr_accessor :jobs
-
-    def initialize(url, *jobs)
-      @url = url
-      jobs.empty? ? @jobs = get_all_jobs : @jobs = jobs
-    end
+    attr_accessor :job
 
     def is_available?
       original_is_available?(@url)
@@ -19,14 +14,6 @@ module AgileNotifier
 
     def get_all_jobs
       raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
-    end
-
-    def job
-      if @jobs.size == 1
-        return @jobs.first
-      else
-        raise('There are more than one job, please use method [jobs] instead of [job]')
-      end
     end
 
     class Job

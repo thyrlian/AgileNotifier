@@ -21,12 +21,11 @@ module AgileNotifier
     end
 
     def ci_job(job)
-      @ci_jobs ||= []
-      @ci_jobs.push(job)
+      @ci_job = job
     end
 
     def ci_get(ci_type)
-      @ci = @current_module.const_get(ci_type).new(@ci_url, *@ci_jobs)
+      @ci = @current_module.const_get(ci_type).new(@ci_url, @ci_job)
     end
     
     def scm_url(url)
