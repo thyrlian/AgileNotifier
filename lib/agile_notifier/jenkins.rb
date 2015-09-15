@@ -15,10 +15,10 @@ module AgileNotifier
       get_value_of_key(key, url.gsub(/\/$/, '') + JSON_API)
     end
     
-    def initialize(url, job_name)
+    def initialize(url, job_name, build_number = nil)
       @url = url
       job_url = URI.encode("#{@url}/job/#{job_name}/")
-      @job = Job.new(job_name, job_url)
+      @job = Job.new(job_name, job_url, build_number)
     end
 
     def get_all_jobs

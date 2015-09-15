@@ -25,7 +25,7 @@ module AgileNotifier
     end
 
     def ci_get(ci_type)
-      @ci = @current_module.const_get(ci_type).new(@ci_url, @ci_job)
+      @ci = @current_module.const_get(ci_type).new(@ci_url, @ci_job, @build_number)
     end
     
     def scm_url(url)
@@ -101,7 +101,7 @@ module AgileNotifier
       judger_type = judger_type.to_s.downcase
       composer_method = "#{composer_type}_committer_of_a_commit".intern
       judger_method = "on_#{judger_type}".intern
-      build = @build_number.nil? ? @ci.job.current_build : @ci.job.get_specific_build(@build_number)
+      build = @ci.job.current_build
       text = Composer.send(composer_method, repo: @scm.repository, revision: build.revision, language: @language)
       Judger.send(judger_method, build, text, organize_args)
     end
