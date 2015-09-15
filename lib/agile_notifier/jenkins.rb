@@ -34,7 +34,7 @@ module AgileNotifier
 
     class Job < CI::Job
       def get_specific_build(build_number)
-        Build.new(build_number, @url + build_number.to_s)
+        Build.new(build_number, @url + build_number.to_s + '/')
       end
       
       def get_last_build
