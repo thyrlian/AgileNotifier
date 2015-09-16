@@ -15,7 +15,6 @@ module AgileNotifier
 
     def initialize(url, args = {})
       super
-      @url.gsub!(/github\./, 'api.github.')
       basic_auth = args.fetch(:basic_auth, nil)
       access_token = args.fetch(:Authorization, nil)
       if basic_auth
@@ -35,6 +34,7 @@ module AgileNotifier
           availability = false
         end
       else
+        @url.gsub!(/github\./, 'api.github.')
         status_url = url.gsub(/:\/\/api\./, '://status.') + '/api/status.json'
         status = self.class.get_value('status', status_url)
         availability = ( status == 'good' )
