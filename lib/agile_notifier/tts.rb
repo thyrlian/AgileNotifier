@@ -88,7 +88,7 @@ module AgileNotifier
         end
 
         def osx_speech(voice, text)
-          system("say -v #{voice} #{text} > /dev/null 2>&1")
+          system("say -v #{voice} '#{text}' > /dev/null 2>&1")
         end
 
         def tts_api(text)
