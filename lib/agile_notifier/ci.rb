@@ -58,6 +58,10 @@ module AgileNotifier
           raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
         end
 
+        def get_branch
+          raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
+        end
+
         def get_previous_build
           raise(NotImplementedError, "Abstract method [#{__method__}] is called, please implement", caller)
         end

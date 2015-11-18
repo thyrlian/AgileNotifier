@@ -59,15 +59,23 @@ module AgileNotifier
           revision.nil? ? nil : revision['SHA1']
         end
 
+        def get_branch
+          revision = Jenkins.get_value('lastBuiltRevision', @url)
+          revision.nil? ? nil : revision['branch'][0]['name']
+        end
+
         def get_previous_build
           previous_number = @number - 1
           while previous_number > 0
             previous_url = @url.gsub(/\/#{@number}\//, "/#{previous_number}/")
             if is_available?(previous_url)
-              return Build.new(previous_number, previous_url)
-            else
-              previous_number -= 1
+              previous_build = Build.new(previous_number, previous_url)
+              previous_branch = previous_build.get_branch
+              if (get_branch == previous_branch)
+                return previous_build
+              end
             end
+            previous_number -= 1
           end
           return nil
         end
@@ -111,7 +119,8 @@ module AgileNotifier
         end
 
         def fixed?
-          if get_previous_result != 'SUCCESS'
+          previous_result = get_previous_result
+          if !previous_result.nil? && previous_result != 'SUCCESS'
             return passed?
           else
             return nil # if previous result is SUCCESS, doesn't make sense, then return nil
