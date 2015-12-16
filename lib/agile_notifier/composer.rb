@@ -23,7 +23,7 @@ module AgileNotifier
         "%{committer_name} ha rotto la build.",
         "%{committer_name} ha completamente rovinato la build.",
         "Ma che cazzo di codice %{committer_name} ha pushato?"
-        ],
+      ],
       zh: [
         "%{committer_name}在搞毛啊, 构建失败了!",
         "%{committer_name}提交的什么烂代码啊?",
@@ -99,7 +99,7 @@ module AgileNotifier
             "El Kanban se esta llenando mucho.",
             "Hay demasiados elementos Kanban, alguien esta trabajando en el?"
         ],
-        en: [
+        it: [
             "Kanban WIP ha superato il limite.",
             "Kanban ha raggiunto il punto limite",
             "Kanban ha troppi tickets, c'è qualcuno che ci sta lavorando?"
