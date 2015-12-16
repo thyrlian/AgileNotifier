@@ -24,6 +24,11 @@ module AgileNotifier
         "%{committer_name} ha completamente rovinato la build.",
         "Ma che cazzo di codice %{committer_name} ha pushato?"
       ],
+      pt: [
+        "%{committer_name} quebrou a build.",
+        "%{committer_name} lixou a build.",
+        "Que raio de código que %{committer_name} submeteu!"
+      ],
       zh: [
         "%{committer_name}在搞毛啊, 构建失败了!",
         "%{committer_name}提交的什么烂代码啊?",
@@ -47,6 +52,10 @@ module AgileNotifier
       it: [
         "%{committer_name} ha reso la build malata.",
         "%{committer_name} ha fatto qualcosa di sbagliato."
+      ],
+      pt: [
+        "%{committer_name} fez a build ficar doente.",
+        "%{committer_name} fez algo não muito bom."
       ],
       zh: [
         "%{committer_name}让构建生病了.",
@@ -76,6 +85,11 @@ module AgileNotifier
         "%{committer_name} è un genio",
         "%{committer_name} ha salvato il mondo."
       ],
+      pt: [
+        "%{committer_name} corrigiu a build.",
+        "%{committer_name} é super brilhante!",
+        "%{committer_name} salvou o mundo."
+      ],
       zh: [
         "%{committer_name}很厉害啊, 修复了构建.",
         "%{committer_name}是个好同志, 该涨工资了.",
@@ -103,6 +117,11 @@ module AgileNotifier
             "Kanban WIP ha superato il limite.",
             "Kanban ha raggiunto il punto limite",
             "Kanban ha troppi tickets, c'è qualcuno che ci sta lavorando?"
+        ],
+        pt: [
+            "Kanban limite de WIP excedido.",
+            "Kanban está entupido.",
+            "Kanban acumulou elementos, está alguém a trabalhar nisto?"
         ],
         zh: [
             "看板瓶颈上限超出",
