@@ -73,7 +73,7 @@ module AgileNotifier
         "%{committer_name} has fixed the build.",
         "%{committer_name} is super brilliant!",
         "%{committer_name} saved the world.",
-        "%{committer_name} roundhouse kicked chuck norris' butt"
+        "%{committer_name} roundhouse kicked Chuck Norris' butt"
       ],
       es: [
         "%{committer_name} ha reparado la compilacion",
