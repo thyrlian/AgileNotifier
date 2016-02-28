@@ -33,6 +33,17 @@ module AgileNotifier
         cmd = Git.combine_commands(go_to_repo, show_author_name)
         Git.run_command(cmd).chomp
       end
+
+      def get_merged_commit(revision)
+        cmd = "git show --pretty=format:\"%P\" #{revision}"
+        regex = /([a-z0-9]+)\s+([a-z0-9]+)/
+        result = regex.match(`#{cmd}`.lines.first)
+        if result
+          return result[2]
+        else
+          return nil
+        end
+      end
     end
   end
 end
